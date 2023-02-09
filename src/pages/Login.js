@@ -25,7 +25,7 @@ const Login = () => {
   return (
     <div className="formContainer">
       <div className="formWraper">
-        <img className="logo" src={logo} />
+        <img className="logo" src={logo} alt="LogoImg" />
         <span className="title">Registrate!</span>
         <form onSubmit={handleLogin}>
           <input type="email" placeholder="email" id="email" />

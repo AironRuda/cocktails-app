@@ -1,6 +1,5 @@
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { doc, setDoc } from "firebase/firestore";
-import { uploadBytesResumable } from "firebase/storage";
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { auth, db } from "../firebase";
@@ -40,7 +39,7 @@ const Register = () => {
   return (
     <div className="formContainer">
       <div className="formWraper">
-        <img className="logo" src={logo} />
+        <img className="logo" src={logo} alt="LogoImg" />
         <span className="title">Registrate!</span>
         <form onSubmit={handleSubmit}>
           <input type="text" placeholder="displayName" id="displayName" />
