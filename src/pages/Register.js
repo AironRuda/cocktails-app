@@ -1,8 +1,9 @@
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
+import { doc, setDoc } from "firebase/firestore";
 import { uploadBytesResumable } from "firebase/storage";
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { auth } from "../firebase";
+import { auth, db } from "../firebase";
 import logo from "../img/logo.png";
 
 const Register = () => {
@@ -23,6 +24,12 @@ const Register = () => {
       await updateProfile(res.user, {
         displayName,
       });
+      await setDoc(doc(db, "users", res.user.uid), {
+        uid: res.user.uid,
+        displayName,
+        name,
+        email,
+      });
       navigate("/");
     } catch (error) {
       console.log(error);
@@ -41,7 +48,7 @@ const Register = () => {
           <input type="email" placeholder="email" id="email" />
           <input type="password" placeholder="password" id="password" />
           <button>Sign up</button>
-          {error && <span>Something went wrong!</span>}
+          {error && <span>!!! Something went wrong!!!</span>}
         </form>
         <p>
           You do have an acount? <Link to="/login">Login</Link>{" "}
