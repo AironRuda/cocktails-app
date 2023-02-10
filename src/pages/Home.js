@@ -11,13 +11,13 @@ const Home = () => {
   return (
     <div className="home">
       <div className="container">
-        <Navbar />
-        <Container>
+        {/* <Navbar /> */}
+        {/* <Container>
           <Routes>
             <Route path="/" element={<Tables />} />
             <Route path="/table" element={<Table />} />
           </Routes>
-        </Container>
+        </Container> */}
       </div>
     </div>
   );
