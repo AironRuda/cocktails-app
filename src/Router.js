@@ -5,13 +5,9 @@ import {
   createRoutesFromElements,
   Navigate,
 } from "react-router-dom";
-import Navbar from "./components/Navbar";
-import Table from "./components/Table";
-import Tables from "./components/Tables";
+import { Navbar, Table, Tables } from "./components";
 import { AuthContext } from "./context/AuthContext";
-import Home from "./pages/Home";
-import Login from "./pages/Login";
-import Register from "./pages/Register";
+import { ErrorPage, Login, Register } from "./pages";
 
 const ProtectedRoute = ({ children }) => {
   const { currentUser } = useContext(AuthContext);
@@ -37,6 +33,7 @@ export const router = createBrowserRouter(
       </Route>
       <Route path="login" element={<Login />} />
       <Route path="register" element={<Register />} />
+      <Route path="*" element={<ErrorPage />} />
     </>
   )
 );
