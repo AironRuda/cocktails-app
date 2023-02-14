@@ -1,6 +1,5 @@
 import { signOut } from "firebase/auth";
-import { collection, getDocs } from "firebase/firestore";
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import {
   Button,
   Container,
@@ -10,11 +9,9 @@ import {
 } from "react-bootstrap";
 import { NavLink, Outlet } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
-import { TableContext } from "../context/TableContext";
-import { auth, db } from "../firebase";
+import { auth } from "../firebase";
 const Navbar = () => {
   const { currentUser } = useContext(AuthContext);
-  console.log(currentUser);
   return (
     <div>
       <NavbarBs expand={false} className="mb-3 text-light bg-dark">
