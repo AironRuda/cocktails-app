@@ -35,7 +35,29 @@ export const TableContextProvider = ({ children }) => {
     }
   };
 
-  const decreaseQuantity = (id) => {};
+  const decreaseQuantity = (id) => {
+    const order = currentTable.order;
+    if (order.find((drink) => drink.id === id)?.quantity === 1) {
+      let copyOfObject = {
+        ...currentTable,
+        order: order.filter((drink) => drink.id !== id),
+      };
+      setCurrentTable(copyOfObject);
+      console.log("sacar", copyOfObject);
+    } else {
+      let copyOfObject = {
+        ...currentTable,
+        order: order.map((drink) => {
+          if (drink.id == id) {
+            return { ...drink, quantity: drink.quantity - 1 };
+          } else {
+            return drink;
+          }
+        }),
+      };
+      setCurrentTable(copyOfObject);
+    }
+  };
 
   useEffect(() => {
     const getCurrentTableInfo = () => {
@@ -75,6 +97,7 @@ export const TableContextProvider = ({ children }) => {
         setCurrentTable,
         cocktailMenu,
         increaseQuantity,
+        decreaseQuantity,
       }}
     >
       {children}
