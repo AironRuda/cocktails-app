@@ -1,7 +1,27 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Button, Card } from "react-bootstrap";
+import { TableContext } from "../context/TableContext";
 
-const DrinkCard = ({ drinkImg, drinkName, drinkPrice }) => {
+const DrinkCard = ({ drinkId, drinkImg, drinkName, drinkPrice }) => {
+  const { increaseQuantity, currentTable } = useContext(TableContext);
+  const [quantity, setQuantity] = useState(0);
+
+  const getQuantity = () => {
+    if (currentTable) {
+      const order = currentTable.order;
+      if (order.find((drink) => drink.id == drinkId) == null) {
+      } else {
+        order.forEach((drink) => {
+          drink.id === drinkId && setQuantity(drink.quantity);
+        });
+      }
+    }
+  };
+
+  useEffect(() => {
+    getQuantity();
+  }, [currentTable]);
+
   return (
     <Card className="m-2 p-1">
       <Card.Img src={drinkImg} />
@@ -9,8 +29,8 @@ const DrinkCard = ({ drinkImg, drinkName, drinkPrice }) => {
       <Card.Text>$ {drinkPrice} k</Card.Text>
       <div className=" d-flex align-items-center justify-content-center g-1">
         <Button>-</Button>
-        <span>1</span>
-        <Button>+</Button>
+        <span>{quantity}</span>
+        <Button onClick={() => increaseQuantity(drinkId)}>+</Button>
       </div>
     </Card>
   );

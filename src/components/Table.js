@@ -5,23 +5,25 @@ import checkIcon from "../icons/check.svg";
 import DrinkCard from "./DrinkCard";
 
 const Table = () => {
-  const { currentTableNumber, currentTable, cocktailMenu } =
+  const { currentTableNumber, currentTable, setCurrentTable, cocktailMenu } =
     useContext(TableContext);
 
   return (
     <div className=" d-flex flex-column justify-content-center align-items-center">
       <h1 className="m-3">Mesa: {currentTableNumber}</h1>
       <Row md={2} sm={1} className="g-3">
-        {cocktailMenu.map((drink) => (
-          // console.log(dirnk.strDrink);
-          <Col key={drink.idDrink}>
-            <DrinkCard
-              drinkImg={drink.strDrinkThumb}
-              drinkName={drink.strDrink}
-              drinkPrice={15}
-            />
-          </Col>
-        ))}
+        {cocktailMenu &&
+          cocktailMenu.map((drink) => (
+            // console.log(dirnk.strDrink);
+            <Col key={drink.idDrink}>
+              <DrinkCard
+                drinkId={drink.idDrink}
+                drinkImg={drink.strDrinkThumb}
+                drinkName={drink.strDrink}
+                drinkPrice={15}
+              />
+            </Col>
+          ))}
       </Row>
 
       <Button className="bg-success m-3">

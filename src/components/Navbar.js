@@ -28,7 +28,9 @@ const Navbar = () => {
             placement="start"
           >
             <Offcanvas.Header closeButton>
-              <Offcanvas.Title>{currentUser.email}</Offcanvas.Title>
+              {currentUser && (
+                <Offcanvas.Title>{currentUser.email}</Offcanvas.Title>
+              )}
             </Offcanvas.Header>
             <Offcanvas.Body>
               <Nav className="justify-content-end flex-grow-1 pe-3">
@@ -46,9 +48,11 @@ const Navbar = () => {
               </Button>
             </Offcanvas.Body>
           </NavbarBs.Offcanvas>
-          <NavbarBs.Text className="text-light">
-            user: {currentUser.displayName}
-          </NavbarBs.Text>
+          {currentUser && (
+            <NavbarBs.Text className="text-light">
+              user: {currentUser.displayName}
+            </NavbarBs.Text>
+          )}
         </Container>
       </NavbarBs>
       <Outlet />
