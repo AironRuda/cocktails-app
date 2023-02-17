@@ -10,7 +10,7 @@ const DrinkCard = ({ drinkId, drinkImg, drinkName, drinkPrice }) => {
   const getQuantity = () => {
     if (currentTable) {
       const order = currentTable.order;
-      if (order.find((drink) => drink.id == drinkId) == null) {
+      if (order.find((drink) => drink.id === drinkId) == null) {
         setQuantity(0);
       } else {
         order.forEach((drink) => {
@@ -22,7 +22,7 @@ const DrinkCard = ({ drinkId, drinkImg, drinkName, drinkPrice }) => {
 
   useEffect(() => {
     getQuantity();
-  }, [currentTable.order]);
+  }, [currentTable]);
 
   return (
     <Card className="m-2 p-1">
@@ -30,9 +30,21 @@ const DrinkCard = ({ drinkId, drinkImg, drinkName, drinkPrice }) => {
       <Card.Text className=" fs-3">{drinkName}</Card.Text>
       <Card.Text>$ {drinkPrice} k</Card.Text>
       <div className=" d-flex align-items-center justify-content-center g-1">
-        <Button onClick={() => decreaseQuantity(drinkId)}>-</Button>
+        <Button
+          onClick={() =>
+            decreaseQuantity(drinkId, drinkImg, drinkName, drinkPrice)
+          }
+        >
+          -
+        </Button>
         <span className="m-3">{quantity}</span>
-        <Button onClick={() => increaseQuantity(drinkId)}>+</Button>
+        <Button
+          onClick={() =>
+            increaseQuantity(drinkId, drinkImg, drinkName, drinkPrice)
+          }
+        >
+          +
+        </Button>
       </div>
     </Card>
   );

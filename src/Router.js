@@ -5,14 +5,22 @@ import {
   createRoutesFromElements,
   Navigate,
 } from "react-router-dom";
-import { Navbar, Table, Tables } from "./components";
+import { Navbar, Table, Tables, Comanda, Bill } from "./components";
 import { AuthContext } from "./context/AuthContext";
+import { TableContext } from "./context/TableContext";
 import { ErrorPage, Login, Register } from "./pages";
 
 const ProtectedRoute = ({ children }) => {
   const { currentUser } = useContext(AuthContext);
   if (!currentUser) {
     return <Navigate to="login" />;
+  }
+  return children;
+};
+const ProtectedRouteNumber = ({ children }) => {
+  const { currentTableNumber } = useContext(TableContext);
+  if (!currentTableNumber) {
+    return <Navigate to="/" />;
   }
   return children;
 };
@@ -29,7 +37,16 @@ export const router = createBrowserRouter(
             </ProtectedRoute>
           }
         />
-        <Route path="/table" element={<Table />} />
+        <Route
+          path="/table"
+          element={
+            <ProtectedRouteNumber>
+              <Table />
+            </ProtectedRouteNumber>
+          }
+        />
+        <Route path="/comanda" element={<Comanda />} />
+        <Route path="/bill" element={<Bill />} />
       </Route>
       <Route path="login" element={<Login />} />
       <Route path="register" element={<Register />} />

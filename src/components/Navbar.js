@@ -16,9 +16,6 @@ const Navbar = () => {
     <div>
       <NavbarBs expand={false} className="mb-3 text-light bg-dark">
         <Container fluid>
-          <Nav.Link to="/" as={NavLink}>
-            Home
-          </Nav.Link>
           <NavbarBs.Toggle
             aria-controls={`offcanvasNavbarBs-expand-${false}`}
             className="bg-light"

@@ -12,12 +12,12 @@ export const TableContextProvider = ({ children }) => {
   const [currentTable, setCurrentTable] = useState(null);
   const [cocktailMenu, setCocktailMenu] = useState();
 
-  const increaseQuantity = (id) => {
+  const increaseQuantity = (id, drinkImg, drinkName, drinkPrice) => {
     const order = currentTable.order;
-    if (order.find((drink) => drink.id == id) == null) {
+    if (order.find((drink) => drink.id === id) == null) {
       let copyOfObject = {
         ...currentTable,
-        order: [...order, { id, quantity: 1 }],
+        order: [...order, { id, quantity: 1, drinkImg, drinkName, drinkPrice }],
       };
       setCurrentTable(copyOfObject);
     } else {
@@ -48,7 +48,7 @@ export const TableContextProvider = ({ children }) => {
       let copyOfObject = {
         ...currentTable,
         order: order.map((drink) => {
-          if (drink.id == id) {
+          if (drink.id === id) {
             return { ...drink, quantity: drink.quantity - 1 };
           } else {
             return drink;

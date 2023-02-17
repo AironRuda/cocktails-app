@@ -1,12 +1,14 @@
 import { useContext } from "react";
 import { Button, Col, Row } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 import { TableContext } from "../context/TableContext";
 import checkIcon from "../icons/check.svg";
 import DrinkCard from "./DrinkCard";
 
 const Table = () => {
-  const { currentTableNumber, currentTable, setCurrentTable, cocktailMenu } =
-    useContext(TableContext);
+  const { currentTableNumber, cocktailMenu } = useContext(TableContext);
+
+  const navigate = useNavigate();
 
   return (
     <div className=" d-flex flex-column justify-content-center align-items-center">
@@ -14,7 +16,6 @@ const Table = () => {
       <Row md={2} sm={1} className="g-3">
         {cocktailMenu &&
           cocktailMenu.map((drink) => (
-            // console.log(dirnk.strDrink);
             <Col key={drink.idDrink}>
               <DrinkCard
                 drinkId={drink.idDrink}
@@ -26,7 +27,12 @@ const Table = () => {
           ))}
       </Row>
 
-      <Button className="bg-success m-3">
+      <Button
+        className="bg-success m-3"
+        onClick={() => {
+          navigate("/comanda");
+        }}
+      >
         <img src={checkIcon} alt="" />
       </Button>
     </div>
