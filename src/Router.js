@@ -5,7 +5,7 @@ import {
   createRoutesFromElements,
   Navigate,
 } from "react-router-dom";
-import { Navbar, Table, Tables, Comanda, Bill } from "./components";
+import { Navbar, Table, Tables, Comanda, Bill, Sales } from "./components";
 import { AuthContext } from "./context/AuthContext";
 import { TableContext } from "./context/TableContext";
 import { ErrorPage, Login, Register } from "./pages";
@@ -47,6 +47,7 @@ export const router = createBrowserRouter(
         />
         <Route path="/comanda" element={<Comanda />} />
         <Route path="/bill" element={<Bill />} />
+        <Route path="/sales" element={<Sales />} />
       </Route>
       <Route path="login" element={<Login />} />
       <Route path="register" element={<Register />} />
