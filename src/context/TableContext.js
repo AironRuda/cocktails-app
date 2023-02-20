@@ -65,6 +65,7 @@ export const TableContextProvider = ({ children }) => {
         tablesArray.find((item) => item.id === currentTableNumber)
       );
     };
+    // currentTable && getCurrentTableInfo()
     currentTableNumber === null
       ? console.log("table non selected")
       : getCurrentTableInfo();
