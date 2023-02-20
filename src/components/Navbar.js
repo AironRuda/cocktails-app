@@ -40,7 +40,7 @@ const Navbar = () => {
                       Sales
                     </Nav.Link>
                     {currentUser.displayName === "admin" && (
-                      <Nav.Link to="dayliMenu" as={NavLink}>
+                      <Nav.Link to="adddayliMenu" as={NavLink}>
                         Agregar al menú del dia
                       </Nav.Link>
                     )}
