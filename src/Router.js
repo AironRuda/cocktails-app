@@ -5,7 +5,15 @@ import {
   createRoutesFromElements,
   Navigate,
 } from "react-router-dom";
-import { Navbar, Table, Tables, Comanda, Bill, Sales } from "./components";
+import {
+  Navbar,
+  Table,
+  Tables,
+  Comanda,
+  Bill,
+  Sales,
+  DayliMenu,
+} from "./components";
 import { AuthContext } from "./context/AuthContext";
 import { TableContext } from "./context/TableContext";
 import { ErrorPage, Login, Register } from "./pages";
@@ -61,14 +69,8 @@ export const router = createBrowserRouter(
             </ProtectedRouteNumber>
           }
         />
-        <Route
-          path="/sales"
-          element={
-            <ProtectedRouteNumber>
-              <Sales />
-            </ProtectedRouteNumber>
-          }
-        />
+        <Route path="/sales" element={<Sales />} />
+        <Route path="/dayliMenu" element={<DayliMenu />} />
       </Route>
       <Route path="login" element={<Login />} />
       <Route path="register" element={<Register />} />

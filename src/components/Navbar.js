@@ -30,21 +30,30 @@ const Navbar = () => {
               )}
             </Offcanvas.Header>
             <Offcanvas.Body>
-              <Nav className="justify-content-end flex-grow-1 pe-3">
-                <Nav.Link to="/" as={NavLink}>
-                  Home
-                </Nav.Link>
-                <Nav.Link to="sales" as={NavLink}>
-                  Sales
-                </Nav.Link>
-              </Nav>
-              <Button
-                onClick={() => {
-                  signOut(auth);
-                }}
-              >
-                logOut
-              </Button>
+              {currentUser && (
+                <div>
+                  <Nav className="justify-content-end flex-grow-1 pe-3">
+                    <Nav.Link to="/" as={NavLink}>
+                      Home
+                    </Nav.Link>
+                    <Nav.Link to="sales" as={NavLink}>
+                      Sales
+                    </Nav.Link>
+                    {currentUser.displayName === "admin" && (
+                      <Nav.Link to="dayliMenu" as={NavLink}>
+                        Agregar al menú del dia
+                      </Nav.Link>
+                    )}
+                  </Nav>
+                  <Button
+                    onClick={() => {
+                      signOut(auth);
+                    }}
+                  >
+                    logOut
+                  </Button>
+                </div>
+              )}
             </Offcanvas.Body>
           </NavbarBs.Offcanvas>
           {currentUser && (
