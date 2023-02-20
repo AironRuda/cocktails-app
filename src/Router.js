@@ -45,9 +45,30 @@ export const router = createBrowserRouter(
             </ProtectedRouteNumber>
           }
         />
-        <Route path="/comanda" element={<Comanda />} />
-        <Route path="/bill" element={<Bill />} />
-        <Route path="/sales" element={<Sales />} />
+        <Route
+          path="/comanda"
+          element={
+            <ProtectedRouteNumber>
+              <Comanda />
+            </ProtectedRouteNumber>
+          }
+        />
+        <Route
+          path="/bill"
+          element={
+            <ProtectedRouteNumber>
+              <Bill />
+            </ProtectedRouteNumber>
+          }
+        />
+        <Route
+          path="/sales"
+          element={
+            <ProtectedRouteNumber>
+              <Sales />
+            </ProtectedRouteNumber>
+          }
+        />
       </Route>
       <Route path="login" element={<Login />} />
       <Route path="register" element={<Register />} />

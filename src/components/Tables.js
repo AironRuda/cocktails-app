@@ -5,6 +5,7 @@ import TableCards from "./TableCards";
 
 const Tables = () => {
   const { tablesArray } = useContext(TableContext);
+
   return (
     <div className=" container d-flex flex-column align-items-center">
       <h1>Tables</h1>

@@ -1,4 +1,4 @@
-import { doc, setDoc, updateDoc } from "firebase/firestore";
+import { doc, updateDoc } from "firebase/firestore";
 import React, { useContext, useEffect, useState } from "react";
 import { Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
