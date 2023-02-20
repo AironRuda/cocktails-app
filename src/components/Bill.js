@@ -6,7 +6,7 @@ import { TableContext } from "../context/TableContext";
 import { db } from "../firebase";
 
 const Bill = () => {
-  const { currentTable } = useContext(TableContext);
+  const { currentTable, setTablesArray, getInfo } = useContext(TableContext);
   const [total, setTotal] = useState(0);
   const [totalSales, setTotalSales] = useState(0);
 
@@ -20,6 +20,7 @@ const Bill = () => {
     };
     getTotalSales();
   }, []);
+
   const handlePayConfirmed = async () => {
     try {
       const orderRef = doc(db, "tables", currentTable.id.toString());
@@ -27,6 +28,8 @@ const Bill = () => {
         order: [],
         totalSales: totalSales + total,
       });
+      setTablesArray([]);
+      getInfo();
       navigate("/");
     } catch (error) {
       console.log(error);

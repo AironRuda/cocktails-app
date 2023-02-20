@@ -58,6 +58,12 @@ export const TableContextProvider = ({ children }) => {
       setCurrentTable(copyOfObject);
     }
   };
+  const getInfo = async () => {
+    const querySnapshot = await getDocs(collection(db, "tables"));
+    querySnapshot.forEach((doc) => {
+      setTablesArray((tablesArray) => [...tablesArray, doc.data()]);
+    });
+  };
 
   useEffect(() => {
     const getCurrentTableInfo = () => {
@@ -65,7 +71,7 @@ export const TableContextProvider = ({ children }) => {
         tablesArray.find((item) => item.id === currentTableNumber)
       );
     };
-    // currentTable && getCurrentTableInfo()
+
     currentTableNumber === null
       ? console.log("table non selected")
       : getCurrentTableInfo();
@@ -76,13 +82,6 @@ export const TableContextProvider = ({ children }) => {
       const cocktails = await cocktail.getDrinks();
       setCocktailMenu(cocktails.data.drinks);
     };
-    const getInfo = async () => {
-      const querySnapshot = await getDocs(collection(db, "tables"));
-      querySnapshot.forEach((doc) => {
-        setTablesArray((tablesArray) => [...tablesArray, doc.data()]);
-      });
-    };
-
     getCocktails();
     getInfo();
   }, []);
@@ -99,6 +98,7 @@ export const TableContextProvider = ({ children }) => {
         cocktailMenu,
         increaseQuantity,
         decreaseQuantity,
+        getInfo,
       }}
     >
       {children}
