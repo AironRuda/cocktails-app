@@ -13,6 +13,8 @@ import {
   Bill,
   Sales,
   AddDayliMenu,
+  DayliMenu,
+  Stock,
 } from "./components";
 import { AuthContext } from "./context/AuthContext";
 import { TableContext } from "./context/TableContext";
@@ -71,6 +73,8 @@ export const router = createBrowserRouter(
         />
         <Route path="/sales" element={<Sales />} />
         <Route path="/adddayliMenu" element={<AddDayliMenu />} />
+        <Route path="/dayliMenu" element={<DayliMenu />} />
+        <Route path="/stock" element={<Stock />} />
       </Route>
       <Route path="login" element={<Login />} />
       <Route path="register" element={<Register />} />
